@@ -1,0 +1,22 @@
+{
+  "devDependencies": {
+    "@faker-js/faker": "^9.6.0",
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^22.13.17",
+    "allure-commandline": "^2.33.0",
+    "allure-playwright": "^3.2.1"
+  },
+  "scripts": {
+    "all-tests": "npx playwright test tests/*.spec.ts",
+    "test-ui": "npx playwright test --ui",
+    "login-test": "npx playwright test tests/login.spec.ts",
+    "products-test": "npx playwright test tests/products.spec.ts",
+    "cart-test": "npx playwright test tests/cart.spec.ts",
+    "checkout-test": "npx playwright test tests/checkout.spec.ts",
+    "shipping-test": "npx playwright test tests/shipping.spec.ts",
+    "sequential-tests": "npm run login-test && npm run products-test && npm run cart-test && npm run checkout-test && npm run shipping-test",
+    "allure:generate": "allure generate allure-results -o allure-report --clean",
+    "allure:open": "allure open allure-report",
+    "allure:report": "npm run sequential-tests || true && npm run allure:generate && npm run allure:open"
+  }
+}
